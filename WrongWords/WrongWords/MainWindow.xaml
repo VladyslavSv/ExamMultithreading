@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WrongWords"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Зпрещенные слова" Height="191.879" Width="364.177">
     <Grid>
-        
+        <ProgressBar HorizontalAlignment="Left" Height="20" Margin="12,88,0,0" VerticalAlignment="Top" Width="331"/>
+        <Button x:Name="startButton" Content="Старт" HorizontalAlignment="Left" Margin="12,113,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="stopButton" Content="Стоп" HorizontalAlignment="Left" Margin="268,113,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="pauseButton" Content="Пауза" HorizontalAlignment="Left" Margin="136,113,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Загрузить файл" HorizontalAlignment="Left" Margin="247,0,0,0" VerticalAlignment="Top" Foreground="#FF0C00FF" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+        <TextBox x:Name="folderTextBox" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="331" Text="D:\MyTesting"/>
+        <Label Content="Папка с результатом" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+        <Button Content="Указать путь" HorizontalAlignment="Left" Margin="11,54,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>

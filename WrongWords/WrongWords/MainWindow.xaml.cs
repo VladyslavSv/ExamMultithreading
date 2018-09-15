@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,22 @@ namespace WrongWords
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FileSystemParser parser = new FileSystemParser();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Label_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ReadInstructionFileWindow readInstructionWindow = new ReadInstructionFileWindow();
+
+            readInstructionWindow.ShowDialog();
+
+            parser.initKeyWords(readInstructionWindow.descriptionTextBox.Text);
+
+            MessageBox.Show("File parsed");
         }
     }
 }

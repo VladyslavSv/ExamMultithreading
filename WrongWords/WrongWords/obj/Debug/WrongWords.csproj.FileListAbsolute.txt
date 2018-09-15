@@ -1,0 +1,16 @@
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\bin\Debug\WrongWords.exe.config
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\bin\Debug\WrongWords.exe
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\bin\Debug\WrongWords.pdb
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.csprojResolveAssemblyReference.cache
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\MainWindow.g.cs
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\App.g.cs
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords_MarkupCompile.cache
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords_MarkupCompile.lref
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\MainWindow.baml
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.g.resources
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.Properties.Resources.resources
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.csproj.GenerateResource.Cache
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.exe
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.pdb
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\ReadInstructionFileWindow.g.cs
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\ReadInstructionFileWindow.baml
