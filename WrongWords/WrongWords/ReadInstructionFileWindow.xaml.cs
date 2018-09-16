@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace WrongWords
 {
     /// <summary>
@@ -27,11 +28,10 @@ namespace WrongWords
 
         private void browseButton_Click(object sender, RoutedEventArgs e)
         {
-
             OpenFileDialog fdlg = new OpenFileDialog();
 
-            fdlg.Title = "C# Corner Open File Dialog";
-            fdlg.InitialDirectory = @"c:\";
+            fdlg.Title = "Instruction file";
+            fdlg.InitialDirectory = @"d:\";
             fdlg.Filter = "All files (*.*)|*.*|All files (*.*)|*.*";
             fdlg.FilterIndex = 2;
             fdlg.RestoreDirectory = true;
@@ -44,6 +44,16 @@ namespace WrongWords
                 string filename = fdlg.FileName;
                 descriptionTextBox.Text = filename;
             }
+        }
+
+        private void applyButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void undoButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

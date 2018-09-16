@@ -14,3 +14,5 @@ C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.exe
 C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\WrongWords.pdb
 C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\ReadInstructionFileWindow.g.cs
 C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\obj\Debug\ReadInstructionFileWindow.baml
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\sklua\Desktop\Exam\WrongWords\WrongWords\bin\Debug\System.Windows.Forms.Ribbon35.dll

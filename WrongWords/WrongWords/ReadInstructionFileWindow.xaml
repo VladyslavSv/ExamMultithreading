@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WrongWords"
         mc:Ignorable="d"
-        Title="Инструкция" Height="140.008" Width="283.119">
+        Title="Инструкция" Height="155.008" Width="297.119">
     <Grid>
         <TextBox x:Name="descriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="16,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249"/>
-        <Button x:Name="applyButton" Content="Подтвердить" HorizontalAlignment="Left" Margin="190,59,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="undoButton" Content="Отмена" HorizontalAlignment="Left" Margin="190,84,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="applyButton" Content="Подтвердить" HorizontalAlignment="Left" Margin="190,59,0,0" VerticalAlignment="Top" Width="75" Click="applyButton_Click"/>
+        <Button x:Name="undoButton" Content="Отмена" HorizontalAlignment="Left" Margin="190,84,0,0" VerticalAlignment="Top" Width="75" Click="undoButton_Click"/>
         <Label x:Name="description" Content="Введите путь к файлу с инструкцией:" HorizontalAlignment="Left" Margin="16,6,0,0" VerticalAlignment="Top"/>
         <Button x:Name="browseButton" Content="Обзор" HorizontalAlignment="Left" Margin="16,59,0,0" VerticalAlignment="Top" Width="76" Click="browseButton_Click"/>
-
     </Grid>
 </Window>

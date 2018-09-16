@@ -1,0 +1,16 @@
+----------16.09.2018 13:46:12----------
+D:\MyTesting\notepad_test.txt
+File length: 28
+Words: 
+file - 1
+ff - 1
+D:\MyTesting\folder\balalaika.txt
+File length: 10
+Words: 
+ff - 1
+zz - 1
+-------------------top 10--------------------
+ff:2
+file:1
+zz:1
+---------------------------------------------

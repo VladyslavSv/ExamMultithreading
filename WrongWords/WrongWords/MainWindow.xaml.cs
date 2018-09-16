@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WinForms = System.Windows.Forms;
 
 namespace WrongWords
 {
@@ -34,9 +35,27 @@ namespace WrongWords
 
             readInstructionWindow.ShowDialog();
 
-            parser.initKeyWords(readInstructionWindow.descriptionTextBox.Text);
+            if (readInstructionWindow.descriptionTextBox.Text != "")
+            {
+                parser.initKeyWords(readInstructionWindow.descriptionTextBox.Text);
+                System.Windows.MessageBox.Show("File parsed");
+            }
+        }
 
-            MessageBox.Show("File parsed");
+        private void browseButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new WinForms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                folderTextBox.Text = dialog.SelectedPath;
+                parser.directoryForCopy = dialog.SelectedPath;
+            }
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            parser.parseFiles();
+            MessageBox.Show("Done");
         }
     }
 }
