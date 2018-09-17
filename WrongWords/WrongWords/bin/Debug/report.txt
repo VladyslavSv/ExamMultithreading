@@ -1,16 +1,381 @@
-----------16.09.2018 13:46:12----------
-D:\MyTesting\notepad_test.txt
-File length: 28
+----------17.09.2018 23:48:51----------
+D:\file.txt
+File length: 16
 Words: 
 file - 1
-ff - 1
-D:\MyTesting\folder\balalaika.txt
-File length: 10
+man - 1
+ffwew - 1
+D:\1\123.txt
+File length: 4
 Words: 
-ff - 1
-zz - 1
--------------------top 10--------------------
-ff:2
-file:1
-zz:1
----------------------------------------------
+file - 1
+D:\Games\123.txt
+File length: 4
+Words: 
+file - 1
+D:\Games\Asterios\Animations\AA.txt
+File length: 14
+Words: 
+file - 1
+C:\Games\World_of_Tanks_SB\dxdiag.txt
+File length: 67560
+Words: 
+file - 6
+man - 1
+C:\Games\World_of_Tanks_SB\Licenses.txt
+File length: 95252
+Words: 
+file - 52
+man - 5
+C:\NVIDIA\DisplayDriver\353.30\Win8_WinVista_Win7_64\International\EULA.txt
+File length: 121879
+Words: 
+file - 42
+man - 17
+C:\NVIDIA\DisplayDriver\353.30\Win8_WinVista_Win7_64\International\license.txt
+File length: 21910
+Words: 
+file - 8
+man - 1
+C:\NVIDIA\DisplayDriver\353.30\Win8_WinVista_Win7_64\International\Display.Driver\license.txt
+File length: 21910
+Words: 
+file - 8
+man - 1
+C:\NVIDIA\DisplayDriver\353.30\Win8_WinVista_Win7_64\International\GFExperience\account_tos.txt
+File length: 12369
+Words: 
+man - 6
+C:\NVIDIA\DisplayDriver\353.30\Win8_WinVista_Win7_64\International\GFExperience\EULA.txt
+File length: 14349
+Words: 
+man - 4
+C:\NVIDIA\DisplayDriver\353.30\Win8_WinVista_Win7_64\International\GFExperience\Licenses.txt
+File length: 10801
+Words: 
+file - 7
+man - 1
+C:\NVIDIA\DisplayDriver\368.22\Win8_WinVista_Win7_64\International\EULA.txt
+File length: 129845
+Words: 
+file - 44
+man - 17
+C:\NVIDIA\DisplayDriver\368.22\Win8_WinVista_Win7_64\International\license.txt
+File length: 26629
+Words: 
+file - 9
+man - 1
+C:\NVIDIA\DisplayDriver\368.22\Win8_WinVista_Win7_64\International\Display.Driver\license.txt
+File length: 26629
+Words: 
+file - 9
+man - 1
+C:\NVIDIA\DisplayDriver\368.22\Win8_WinVista_Win7_64\International\GFExperience\account_tos.txt
+File length: 12369
+Words: 
+man - 6
+C:\NVIDIA\DisplayDriver\368.22\Win8_WinVista_Win7_64\International\GFExperience\EULA.txt
+File length: 129845
+Words: 
+file - 44
+man - 17
+C:\NVIDIA\DisplayDriver\368.22\Win8_WinVista_Win7_64\International\GFExperience\Licenses.txt
+File length: 44006
+Words: 
+file - 16
+man - 3
+C:\open server\OSPanel\domains\fastsite.ru\license.txt
+File length: 19935
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\fastsite.ru\wp-content\plugins\akismet\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\fastsite.ru\wp-content\plugins\akismet\readme.txt
+File length: 16951
+Words: 
+file - 2
+man - 5
+C:\open server\OSPanel\domains\fastsite.ru\wp-content\themes\twentyfifteen\genericons\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\fastsite.ru\wp-content\themes\twentyseventeen\README.txt
+File length: 3332
+Words: 
+man - 1
+C:\open server\OSPanel\domains\fastsite.ru\wp-content\themes\twentysixteen\genericons\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\fastsite.ru\wp-includes\ID3\readme.txt
+File length: 24652
+Words: 
+file - 69
+man - 5
+C:\open server\OSPanel\domains\fastsite.ru\wp-includes\js\plupload\license.txt
+File length: 17987
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\fastsite.ru\wp-includes\js\swfupload\license.txt
+File length: 1540
+Words: 
+file - 1
+C:\open server\OSPanel\domains\fastsite.ru\wp-includes\js\tinymce\license.txt
+File length: 26441
+Words: 
+file - 10
+man - 2
+C:\open server\OSPanel\domains\nikita.com\INSTALL.TXT
+File length: 2384
+Words: 
+man - 1
+C:\open server\OSPanel\domains\nikita.com\README.TXT
+File length: 2447
+Words: 
+man - 1
+C:\open server\OSPanel\domains\nikita.com\robots.txt
+File length: 1983
+Words: 
+man - 3
+C:\open server\OSPanel\domains\site\INSTALL.TXT
+File length: 2384
+Words: 
+man - 1
+C:\open server\OSPanel\domains\site\README.TXT
+File length: 2447
+Words: 
+man - 1
+C:\open server\OSPanel\domains\site\robots.txt
+File length: 1983
+Words: 
+man - 3
+C:\open server\OSPanel\domains\test-wordp.com\license.txt
+File length: 19935
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\test-wordp.com\wp-content\plugins\akismet\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\test-wordp.com\wp-content\plugins\akismet\readme.txt
+File length: 17261
+Words: 
+file - 2
+man - 6
+C:\open server\OSPanel\domains\test-wordp.com\wp-content\themes\twentyfifteen\genericons\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\test-wordp.com\wp-content\themes\twentyseventeen\README.txt
+File length: 3332
+Words: 
+man - 1
+C:\open server\OSPanel\domains\test-wordp.com\wp-content\themes\twentysixteen\genericons\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\test-wordp.com\wp-includes\ID3\readme.txt
+File length: 24652
+Words: 
+file - 69
+man - 5
+C:\open server\OSPanel\domains\test-wordp.com\wp-includes\js\plupload\license.txt
+File length: 17987
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\test-wordp.com\wp-includes\js\swfupload\license.txt
+File length: 1540
+Words: 
+file - 1
+C:\open server\OSPanel\domains\test-wordp.com\wp-includes\js\tinymce\license.txt
+File length: 26441
+Words: 
+file - 10
+man - 2
+C:\open server\OSPanel\domains\us123.com\license.txt
+File length: 19935
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\us123.com\wp-content\plugins\akismet\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\us123.com\wp-content\plugins\akismet\readme.txt
+File length: 16951
+Words: 
+file - 2
+man - 5
+C:\open server\OSPanel\domains\us123.com\wp-content\plugins\woocommerce\license.txt
+File length: 36314
+Words: 
+file - 6
+man - 11
+C:\open server\OSPanel\domains\us123.com\wp-content\plugins\woocommerce\readme.txt
+File length: 25069
+Words: 
+file - 5
+man - 5
+C:\open server\OSPanel\domains\us123.com\wp-content\themes\storefront\README.txt
+File length: 31543
+Words: 
+file - 5
+man - 7
+C:\open server\OSPanel\domains\us123.com\wp-content\themes\twentyfifteen\genericons\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\us123.com\wp-content\themes\twentyseventeen\README.txt
+File length: 3332
+Words: 
+man - 1
+C:\open server\OSPanel\domains\us123.com\wp-content\themes\twentysixteen\genericons\LICENSE.txt
+File length: 18092
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\us123.com\wp-includes\ID3\readme.txt
+File length: 24652
+Words: 
+file - 69
+man - 5
+C:\open server\OSPanel\domains\us123.com\wp-includes\js\plupload\license.txt
+File length: 17987
+Words: 
+file - 5
+man - 3
+C:\open server\OSPanel\domains\us123.com\wp-includes\js\swfupload\license.txt
+File length: 1540
+Words: 
+file - 1
+C:\open server\OSPanel\domains\us123.com\wp-includes\js\tinymce\license.txt
+File length: 26441
+Words: 
+file - 10
+man - 2
+C:\open server\OSPanel\modules\conemu\ConEmu\About-ConEmu.txt
+File length: 3551
+Words: 
+file - 5
+man - 7
+C:\open server\OSPanel\modules\conemu\ConEmu\Portable.txt
+File length: 1448
+Words: 
+file - 5
+C:\open server\OSPanel\modules\conemu\ConEmu\WhatsNew-ConEmu.txt
+File length: 499736
+Words: 
+file - 139
+man - 164
+C:\open server\OSPanel\modules\conemu\ConEmu\Addons\CallPlugin.txt
+File length: 704
+Words: 
+man - 1
+C:\open server\OSPanel\modules\conemu\ConEmu\clink\Readme.txt
+File length: 484
+Words: 
+file - 1
+C:\open server\OSPanel\modules\conemu\plugins\ConEmu\Readme.txt
+File length: 963
+Words: 
+file - 1
+man - 1
+C:\open server\OSPanel\modules\database\MariaDB-10\share\errmsg-utf8.txt
+File length: 499798
+Words: 
+file - 111
+man - 254
+C:\open server\OSPanel\modules\database\MariaDB-10-x64\share\errmsg-utf8.txt
+File length: 499798
+Words: 
+file - 111
+man - 254
+C:\open server\OSPanel\modules\database\MariaDB-10.1\share\errmsg-utf8.txt
+File length: 501060
+Words: 
+file - 111
+man - 254
+C:\open server\OSPanel\modules\database\MariaDB-10.1-x64\share\errmsg-utf8.txt
+File length: 501060
+Words: 
+file - 111
+man - 254
+C:\open server\OSPanel\modules\database\MariaDB-10.2\share\errmsg-utf8.txt
+File length: 514335
+Words: 
+file - 111
+man - 258
+C:\open server\OSPanel\modules\database\MariaDB-10.2-x64\share\errmsg-utf8.txt
+File length: 514335
+Words: 
+file - 111
+man - 258
+C:\open server\OSPanel\modules\database\MariaDB-5.5\share\errmsg-utf8.txt
+File length: 471568
+Words: 
+file - 107
+man - 260
+C:\open server\OSPanel\modules\database\MariaDB-5.5-x64\share\errmsg-utf8.txt
+File length: 471568
+Words: 
+file - 107
+man - 260
+C:\open server\OSPanel\modules\database\MySQL-5.5\share\errmsg-utf8.txt
+File length: 470520
+Words: 
+file - 105
+man - 258
+C:\open server\OSPanel\modules\database\MySQL-5.5-x64\share\errmsg-utf8.txt
+File length: 470520
+Words: 
+file - 105
+man - 258
+C:\open server\OSPanel\modules\database\MySQL-5.6\share\dictionary.txt
+File length: 25575
+Words: 
+file - 2
+man - 40
+C:\open server\OSPanel\modules\database\MySQL-5.6\share\errmsg-utf8.txt
+File length: 506007
+Words: 
+file - 111
+man - 258
+C:\open server\OSPanel\modules\database\MySQL-5.6-x64\share\dictionary.txt
+File length: 25575
+Words: 
+file - 2
+man - 40
+C:\open server\OSPanel\modules\database\MySQL-5.6-x64\share\errmsg-utf8.txt
+File length: 506007
+Words: 
+file - 111
+man - 258
+C:\open server\OSPanel\modules\database\MySQL-5.7\share\dictionary.txt
+File length: 25575
+Words: 
+file - 2
+man - 40
+C:\open server\OSPanel\modules\database\MySQL-5.7\share\errmsg-utf8.txt
+File length: 525548
+Words: 
+file - 116
+man - 264
+C:\open server\OSPanel\modules\database\MySQL-5.7-x64\share\dictionary.txt
+File length: 25575
+Words: 
+file - 2
+man - 40

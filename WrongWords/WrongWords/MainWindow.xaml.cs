@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinForms = System.Windows.Forms;
+using System.Threading;
 
 namespace WrongWords
 {
@@ -22,10 +23,38 @@ namespace WrongWords
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FileSystemParser parser = new FileSystemParser();
+        private FileSystemParser parser;
 
+        public SynchronizationContext uiContext
+        {
+            get; set;
+        }
+
+        public void addLineToListView(string line)
+        {
+            uiContext.Send((d) => { myListBox.Items.Add(line); }, 0);
+        }
+        private volatile int fileCounter = 0;
+
+        public int uiCounter
+        {
+            get
+            {
+                return fileCounter;
+            }
+            set
+            {
+                fileCounter = value;
+                uiContext.Send((d) => { repWords.Content = "Слов заменено: " + fileCounter; }, 0);
+            }
+        }
+        public void ClearTypeHintListView()
+        {
+
+        }
         public MainWindow()
         {
+            parser = new FileSystemParser(this);
             InitializeComponent();
         }
 
@@ -34,6 +63,8 @@ namespace WrongWords
             ReadInstructionFileWindow readInstructionWindow = new ReadInstructionFileWindow();
 
             readInstructionWindow.ShowDialog();
+
+            uiContext = SynchronizationContext.Current;
 
             if (readInstructionWindow.descriptionTextBox.Text != "")
             {
@@ -55,7 +86,6 @@ namespace WrongWords
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             parser.parseFiles();
-            MessageBox.Show("Done");
         }
     }
 }

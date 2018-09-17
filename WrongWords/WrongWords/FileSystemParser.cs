@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Threading;
+
 namespace WrongWords
 {
     public class FileSystemParser
@@ -13,12 +15,23 @@ namespace WrongWords
         private Dictionary<string, int> allWords = new Dictionary<string, int>();
         private string swapPattern = "*******";
         private string pathToReport = "report.txt";
+        private int counter = 1;
+        private MainWindow window
+        {
+            get;set;
+        }
+
         public string directoryForCopy
         {
             get;set;
         }
 
         public FileSystemParser() { }
+
+        public FileSystemParser(MainWindow window)
+        {
+            this.window = window;
+        }
 
         public FileSystemParser(string pathToFileWithKeyWords, string directoryForCopy)
         {
@@ -28,103 +41,141 @@ namespace WrongWords
         }
 
 
-        public void parseFiles()
+        public async void parseFiles()
         {
-            string scanPath = @"D:\MyTesting";
-
+           
             startWritingReport();
 
-            parseDirectory(scanPath);
+             List<Task> tasks = new List<Task>();
 
-            endWritingReport();
+            foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
+            {
+                tasks.Add(parseDirectory(driveInfo.Name));
+            }
+
+            await Task.Run(() => {
+                Task.WaitAll(tasks.ToArray());
+                MessageBox.Show("all done");
+                endWritingReport();
+            });      
         }
-        public void parseDirectory(string path)
+       
+
+        public async Task parseDirectory(string path)
         {
-            Dictionary<string, int> localDictionary = null;
-            string[] allLines = new string[0];
-            Regex regex = null;
-            StreamWriter writer = null;
-            string newFileName = "";
-            int replaceIndex = 0;
-            path += @"\";
+           await Task.Run( async () =>
+           {
+               Dictionary<string, int> localDictionary = null;
+                string[] allLines = new string[0];
+                Regex regex = null;
+                StreamWriter writer = null;
+                string newFileName = "";
+                int replaceIndex = 0;
 
-            try
-            {
 
-                //пройдемся по папкам в текущей директории
-                foreach (FileInfo innerInfo in new DirectoryInfo(path).GetFiles())
+                try
                 {
-                    localDictionary = new Dictionary<string, int>();
-                    this.copyKeys(localDictionary);
-                    //получим все строки файла
-                    allLines = File.ReadAllLines(innerInfo.FullName);
-                   
-                    //пройдемся по всем строкам файла
-                    for (int i = 0; i < allLines.Length; i++)
+                    //пройдемся по папкам в текущей директории
+                    foreach (FileInfo innerInfo in new DirectoryInfo(path).GetFiles("*.txt"))
                     {
-                        //заменим все вхождения каждого слова в строке
-                        foreach (KeyValuePair<string, int> keyValue in allWords)
+
+                        localDictionary = new Dictionary<string, int>();
+                        this.copyKeys(localDictionary);
+                        //получим все строки файла
+                        allLines = File.ReadAllLines(innerInfo.FullName);
+
+                        //пройдемся по всем строкам файла
+                        for (int i = 0; i < allLines.Length; i++)
                         {
-                            //заменем пока встречается слово
-                            while (allLines[i].IndexOf(keyValue.Key) != -1)
+                            lock (allWords)
                             {
-                                replaceIndex++;
-                                if (replaceIndex == 1)
+                                //заменим все вхождения каждого слова в строке
+                                foreach (KeyValuePair<string, int> keyValue in allWords)
                                 {
-                                    newFileName = makeCorrectedFileName(innerInfo.FullName);
-                                    writer = new StreamWriter(newFileName);
+                                    //заменяем пока встречается слово
+                                    while (allLines[i].IndexOf(keyValue.Key) != -1)
+                                    {
+                                        regex = new Regex(keyValue.Key);
+
+                                        string before = allLines[i];
+
+                                        allLines[i] = regex.Replace(allLines[i], swapPattern, 1);
+
+                                        if (allLines[i] != before)
+                                        {
+                                            replaceIndex++;
+                                            if (replaceIndex == 1)
+                                            {
+                                                newFileName = makeCorrectedFileName(innerInfo.FullName);
+                                                writer = new StreamWriter(newFileName);
+                                            }
+                                        }
+                                        localDictionary[keyValue.Key]++;
+
+                                       window.uiCounter++;
+                                    }
                                 }
-
-                                regex = new Regex(keyValue.Key);
-                                allLines[i] = regex.Replace(allLines[i], swapPattern, 1);
-
-                                localDictionary[keyValue.Key]++;
                             }
+
+                            if (replaceIndex != 0)
+                            {
+                                writer.Write(allLines[i]);
+                            }
+
+
+                        }
+                        if (replaceIndex >= 1)
+                        {
+                            File.Copy(innerInfo.FullName, replacePath(innerInfo.FullName), true);
+
+                            replaceIndex = 0;
+
+                            writer.Flush();
+                            writer.Close();
+
+                            lock (allWords)
+                            {
+                                //добавим встречающиеся слова в общий зачет
+                                foreach (KeyValuePair<string, int> pair in localDictionary)
+                                {
+                                    allWords[pair.Key] += localDictionary[pair.Key];
+                                }
+                            }
+                            //добавим запись в отчет
+                            addFileToReport(localDictionary, innerInfo);
+                            addFileToListView(localDictionary, innerInfo);
                         }
 
-                        if (replaceIndex != 0)
-                        {
-                            writer.Write(allLines[i]);
-                        }
 
                     }
 
-                    if ( replaceIndex >= 1)
+                    foreach (DirectoryInfo directoryInfo in new DirectoryInfo(path).GetDirectories())
                     {
-                        File.Copy( innerInfo.FullName, replacePath(innerInfo.FullName), true );
-
-                        replaceIndex = 0;
-
-                        writer.Flush();
-                        writer.Close();
-
-                        //добавим встречающиеся слова в общий зачет
-                        foreach (KeyValuePair<string, int> pair in localDictionary)
-                        {
-                            allWords[pair.Key] += localDictionary[pair.Key];
-                        }
-                        //добавим запись в отчет
-                        addFileToReport(localDictionary, innerInfo);
+                           await parseDirectory(directoryInfo.FullName);       
                     }
                 }
-
-                foreach (DirectoryInfo directoryInfo in new DirectoryInfo(path).GetDirectories())
+                catch (UnauthorizedAccessException unauthorizedException)
                 {
-                    parseDirectory(directoryInfo.FullName);
+                    return;
                 }
-
-            }
-            catch (UnauthorizedAccessException unauthorizedException)
-            {
-                System.Windows.MessageBox.Show(unauthorizedException.Message);
-            }
-            catch (IOException ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message);
-            }
-
+                catch (IOException ex)
+                {
+                    return;
+                }
+           });
         }
+        public bool isPathRoot(string path)
+        {
+            foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
+            {
+                if (path == driveInfo.Name)
+                {
+                    return true;
+                }
+            }
 
+            return false;
+        }
         public void initKeyWords(string path)
         {
             string text = File.ReadAllText( path );
@@ -137,9 +188,12 @@ namespace WrongWords
         }
         public void copyKeys(Dictionary<string, int> localDictionary)
         {
-            foreach (KeyValuePair<string, int> single in allWords)
+            lock (allWords)
             {
-                localDictionary.Add(single.Key, 0);
+                foreach (KeyValuePair<string, int> single in allWords)
+                {
+                    localDictionary.Add(single.Key, 0);
+                }
             }
         }
         public string makeCorrectedFileName(string baseName)
@@ -172,19 +226,30 @@ namespace WrongWords
                 writer.WriteLine(fileInfo.FullName);
                 writer.WriteLine("File length: " + fileInfo.Length.ToString());
                 writer.WriteLine("Words: ");
-
-                foreach (KeyValuePair<string, int> pair in localDictionary)
+                lock (allWords)
                 {
-                    if (pair.Value != 0)
+                    foreach (KeyValuePair<string, int> pair in localDictionary)
                     {
-                        writer.WriteLine(pair.Key + " - " + pair.Value);
+                        if (pair.Value != 0)
+                        {
+                            writer.WriteLine(pair.Key + " - " + pair.Value);
+                        }
                     }
                 }
             }
         }
+        private void addFileToListView(Dictionary<string, int> localDictionary, FileInfo fileInfo)
+        {
+            window.addLineToListView(fileInfo.FullName);
+        }
         private void endWritingReport()
         {
-            var myList = allWords.ToList();
+            List<KeyValuePair<string, int>> myList = null;
+
+            lock (allWords)
+            {
+                myList = allWords.ToList();
+            }
 
             myList.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
 
@@ -204,5 +269,6 @@ namespace WrongWords
             }
 
         }
+
     }
 }
