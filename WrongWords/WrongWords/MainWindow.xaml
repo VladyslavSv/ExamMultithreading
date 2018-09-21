@@ -5,17 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WrongWords"
         mc:Ignorable="d"
+        Name="mainWnd"
         Title="Зпрещенные слова" Height="339.879" Width="364.177">
+    <Window.Resources>
+        <local:MainViewModel x:Key="mainViewModel"></local:MainViewModel>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="startButton" Content="Старт" HorizontalAlignment="Left" Margin="9,279,0,0" VerticalAlignment="Top" Width="100" Click="startButton_Click"/>
-        <Button x:Name="stopButton" Content="Стоп" HorizontalAlignment="Left" Margin="245,279,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="pauseButton" Content="Пауза" HorizontalAlignment="Left" Margin="130,279,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="Загрузить слова" HorizontalAlignment="Left" Margin="245,10,0,0" VerticalAlignment="Top" Foreground="#FF0C00FF" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="folderTextBox" HorizontalAlignment="Left" Height="23" Margin="8,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="331"/>
-        <Label Content="Папка с результатом" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="browseButton" Content="Указать путь" HorizontalAlignment="Left" Margin="264,64,0,0" VerticalAlignment="Top" Width="75" Click="browseButton_Click"/>
-        <ListBox x:Name="myListBox" HorizontalAlignment="Left" Height="180" Margin="9,89,0,0" VerticalAlignment="Top" Width="330"/>
-        <Label x:Name="repWords" Content="Слов заменено:" HorizontalAlignment="Left" Margin="9,64,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.02*" />
+            <ColumnDefinition Width="0.96*"/>
+            <ColumnDefinition Width="0.02*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"  x:Name="startButton" Content="Старт" VerticalAlignment="Center" Width="100" 
+                    Command="{Binding Source={StaticResource mainViewModel},Path=startCommand}" CommandParameter="{Binding ElementName=mainWnd}"/>
+            <Button Grid.Column="1" x:Name="stopButton" Content="Стоп" VerticalAlignment="Center" Width="100"/>
+            <Button Grid.Column="2" x:Name="pauseButton" Content="Пауза" VerticalAlignment="Center" Width="100"/>
+        </Grid>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Height="25" x:Name="folderTextBox" TextWrapping="Wrap" Text="{Binding Source={StaticResource mainViewModel}, Path=DirectoryPath, Mode=TwoWay}"/>
+
+        <Grid Grid.Row="3" Grid.Column="1" x:Name="parent">
+            <ListBox Width="{Binding Width, ElementName=parent}" 
+                     Height="{Binding ActualHeight, ElementName=parent}" 
+                     x:Name="myListBox"
+                     ItemsSource="{Binding Source={StaticResource mainViewModel}, Path=Items, Mode=TwoWay}">
+            </ListBox>
+        </Grid>
+
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding Source={StaticResource mainViewModel} ,Path=labelCommand}" BorderThickness="0" Grid.Column="1" Content="Загрузить слова" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,10,0"  Foreground="#FF0C00FF">
+                <Button.Background>
+                    <SolidColorBrush Opacity="1" Color="White"/>
+                </Button.Background>
+            </Button>
+            <Label Grid.Column="0" Content="Папка с результатом:" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="browseButton" Content="Указать путь" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    Command="{Binding Source={StaticResource mainViewModel},Path=browseCommand}" CommandParameter="{Binding ElementName=mainWnd}"/>
+
+            <TextBlock Grid.Column="1" x:Name="repWords"  HorizontalAlignment="Left"  Text="{ Binding Source={StaticResource mainViewModel}, Path=counterProp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"/>
+        </Grid>
+
 
     </Grid>
 </Window>

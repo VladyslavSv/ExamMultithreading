@@ -24,6 +24,7 @@ namespace WrongWords
         public ReadInstructionFileWindow()
         {
             InitializeComponent();
+            ResizeMode = ResizeMode.NoResize;
         }
 
         private void browseButton_Click(object sender, RoutedEventArgs e)
@@ -53,6 +54,7 @@ namespace WrongWords
 
         private void undoButton_Click(object sender, RoutedEventArgs e)
         {
+            descriptionTextBox.Text = "";
             this.Close();
         }
     }

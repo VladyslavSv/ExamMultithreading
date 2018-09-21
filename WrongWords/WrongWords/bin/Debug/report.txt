@@ -1,22 +1,4 @@
-----------17.09.2018 23:48:51----------
-D:\file.txt
-File length: 16
-Words: 
-file - 1
-man - 1
-ffwew - 1
-D:\1\123.txt
-File length: 4
-Words: 
-file - 1
-D:\Games\123.txt
-File length: 4
-Words: 
-file - 1
-D:\Games\Asterios\Animations\AA.txt
-File length: 14
-Words: 
-file - 1
+----------21.09.2018 15:07:30----------
 C:\Games\World_of_Tanks_SB\dxdiag.txt
 File length: 67560
 Words: 
@@ -324,58 +306,3 @@ File length: 514335
 Words: 
 file - 111
 man - 258
-C:\open server\OSPanel\modules\database\MariaDB-5.5\share\errmsg-utf8.txt
-File length: 471568
-Words: 
-file - 107
-man - 260
-C:\open server\OSPanel\modules\database\MariaDB-5.5-x64\share\errmsg-utf8.txt
-File length: 471568
-Words: 
-file - 107
-man - 260
-C:\open server\OSPanel\modules\database\MySQL-5.5\share\errmsg-utf8.txt
-File length: 470520
-Words: 
-file - 105
-man - 258
-C:\open server\OSPanel\modules\database\MySQL-5.5-x64\share\errmsg-utf8.txt
-File length: 470520
-Words: 
-file - 105
-man - 258
-C:\open server\OSPanel\modules\database\MySQL-5.6\share\dictionary.txt
-File length: 25575
-Words: 
-file - 2
-man - 40
-C:\open server\OSPanel\modules\database\MySQL-5.6\share\errmsg-utf8.txt
-File length: 506007
-Words: 
-file - 111
-man - 258
-C:\open server\OSPanel\modules\database\MySQL-5.6-x64\share\dictionary.txt
-File length: 25575
-Words: 
-file - 2
-man - 40
-C:\open server\OSPanel\modules\database\MySQL-5.6-x64\share\errmsg-utf8.txt
-File length: 506007
-Words: 
-file - 111
-man - 258
-C:\open server\OSPanel\modules\database\MySQL-5.7\share\dictionary.txt
-File length: 25575
-Words: 
-file - 2
-man - 40
-C:\open server\OSPanel\modules\database\MySQL-5.7\share\errmsg-utf8.txt
-File length: 525548
-Words: 
-file - 116
-man - 264
-C:\open server\OSPanel\modules\database\MySQL-5.7-x64\share\dictionary.txt
-File length: 25575
-Words: 
-file - 2
-man - 40

@@ -7,18 +7,37 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Threading;
+using WrongWords.model;
 
 namespace WrongWords
 {
+    public delegate void EmptyDelegate();
+    public delegate void ListViewReporter(FileInfo fileInfo);
+
     public class FileSystemParser
     {
-        private Dictionary<string, int> allWords = new Dictionary<string, int>();
+        public Dictionary<string, int> allWords = new Dictionary<string, int>();
+
+        private ReportWriter reportWriter;
+
+        public event EmptyDelegate couterChanged;
+        public event ListViewReporter reporter;
+
         private string swapPattern = "*******";
-        private string pathToReport = "report.txt";
-        private int counter = 1;
-        private MainWindow window
+
+        private volatile int wordsReplaces = 0;
+
+        public int WordsReplaced
         {
-            get;set;
+            get
+            {
+                return wordsReplaces;
+            }
+            set
+            {
+                    wordsReplaces = value;    
+                    couterChanged.Invoke();      
+            }
         }
 
         public string directoryForCopy
@@ -26,37 +45,26 @@ namespace WrongWords
             get;set;
         }
 
-        public FileSystemParser() { }
-
-        public FileSystemParser(MainWindow window)
+        public FileSystemParser()
         {
-            this.window = window;
-        }
-
-        public FileSystemParser(string pathToFileWithKeyWords, string directoryForCopy)
-        {
-            initKeyWords(pathToFileWithKeyWords);
-
-            this.directoryForCopy = directoryForCopy;
+            reportWriter = new ReportWriter("report.txt");
         }
 
 
         public async void parseFiles()
         {
-           
-            startWritingReport();
-
-             List<Task> tasks = new List<Task>();
-
-            foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
-            {
-                tasks.Add(parseDirectory(driveInfo.Name));
-            }
-
             await Task.Run(() => {
-                Task.WaitAll(tasks.ToArray());
-                MessageBox.Show("all done");
-                endWritingReport();
+                reportWriter.startWritingReport();
+
+                List<Task> parseTasks = new List<Task>();
+
+                foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
+                {
+                    parseTasks.Add(parseDirectory(driveInfo.Name));
+                }
+                Task.WaitAll(parseTasks.ToArray());
+                MessageBox.Show("Сканирование файлов окончено.");
+                reportWriter.endWritingReport(allWords);
             });      
         }
        
@@ -106,13 +114,13 @@ namespace WrongWords
                                             replaceIndex++;
                                             if (replaceIndex == 1)
                                             {
-                                                newFileName = makeCorrectedFileName(innerInfo.FullName);
+                                                newFileName = PathHelper.makeCorrectedFileName(innerInfo.FullName, directoryForCopy);
                                                 writer = new StreamWriter(newFileName);
                                             }
                                         }
                                         localDictionary[keyValue.Key]++;
 
-                                       window.uiCounter++;
+                                       WordsReplaced++;
                                     }
                                 }
                             }
@@ -126,7 +134,7 @@ namespace WrongWords
                         }
                         if (replaceIndex >= 1)
                         {
-                            File.Copy(innerInfo.FullName, replacePath(innerInfo.FullName), true);
+                            File.Copy(innerInfo.FullName, PathHelper.replacePath(innerInfo.FullName,directoryForCopy), true);
 
                             replaceIndex = 0;
 
@@ -141,10 +149,10 @@ namespace WrongWords
                                     allWords[pair.Key] += localDictionary[pair.Key];
                                 }
                             }
-                            //добавим запись в отчет
-                            addFileToReport(localDictionary, innerInfo);
-                            addFileToListView(localDictionary, innerInfo);
-                        }
+                           //добавим запись в отчет
+                           reporter.Invoke(innerInfo);
+                           reportWriter.addFileToReport(localDictionary, innerInfo);
+                       }
 
 
                     }
@@ -163,18 +171,6 @@ namespace WrongWords
                     return;
                 }
            });
-        }
-        public bool isPathRoot(string path)
-        {
-            foreach (DriveInfo driveInfo in DriveInfo.GetDrives())
-            {
-                if (path == driveInfo.Name)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
         public void initKeyWords(string path)
         {
@@ -196,79 +192,5 @@ namespace WrongWords
                 }
             }
         }
-        public string makeCorrectedFileName(string baseName)
-        {
-            string[] parts = baseName.Split('.');
-            parts[parts.Length - 2] = parts[parts.Length - 2] + "-corrected";
-            string correctedLocalName = string.Join(".", parts);
-
-            return replacePath(correctedLocalName);
-        }
-
-        public string replacePath(string basePath)
-        {
-            string[] parts = basePath.Split('\\');
-            return directoryForCopy + @"\" + parts[parts.Length - 1];
-        }
-        private void startWritingReport()
-        {
-            using (StreamWriter writer = new StreamWriter(pathToReport, false))
-            {
-                writer.Write("----------");
-                writer.Write(DateTime.Now);
-                writer.WriteLine("----------");
-            }
-        }
-        private void addFileToReport( Dictionary< string, int > localDictionary, FileInfo fileInfo )
-        {
-            using (StreamWriter writer = new StreamWriter(pathToReport, true))
-            {
-                writer.WriteLine(fileInfo.FullName);
-                writer.WriteLine("File length: " + fileInfo.Length.ToString());
-                writer.WriteLine("Words: ");
-                lock (allWords)
-                {
-                    foreach (KeyValuePair<string, int> pair in localDictionary)
-                    {
-                        if (pair.Value != 0)
-                        {
-                            writer.WriteLine(pair.Key + " - " + pair.Value);
-                        }
-                    }
-                }
-            }
-        }
-        private void addFileToListView(Dictionary<string, int> localDictionary, FileInfo fileInfo)
-        {
-            window.addLineToListView(fileInfo.FullName);
-        }
-        private void endWritingReport()
-        {
-            List<KeyValuePair<string, int>> myList = null;
-
-            lock (allWords)
-            {
-                myList = allWords.ToList();
-            }
-
-            myList.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
-
-            using (StreamWriter writer = new StreamWriter(pathToReport, true))
-            {
-
-                writer.WriteLine("-------------------top 10--------------------");
-
-                int maxSize = (myList.Count >= 10) ? 10 : myList.Count;
-
-                for (int i = 0; i < maxSize; i++)
-                {
-                    writer.WriteLine(myList[i].Key + ":" + myList[i].Value);
-                }
-
-                writer.WriteLine("---------------------------------------------");
-            }
-
-        }
-
     }
 }
